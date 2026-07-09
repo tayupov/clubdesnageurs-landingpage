@@ -22,16 +22,17 @@ export default function Hero() {
         The 42 Company
       </i>
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 px-6 text-center text-white" />
-      <div className="absolute inset-x-0 bottom-12 z-10 px-6 text-left text-white sm:inset-x-auto sm:bottom-20 sm:left-1/4 sm:max-w-md sm:-translate-x-1/2">
-        <h2 className="font-sans text-2xl sm:text-4xl">Placeholder headline</h2>
-        <p className="mt-3 text-sm text-white/80 sm:text-base">
-          Placeholder supporting text goes here, describing the offer or value proposition.
+      <div className="absolute inset-x-0 bottom-12 z-10 px-6 text-left text-white sm:inset-x-auto sm:bottom-20 sm:left-1/4 sm:max-w-lg sm:-translate-x-1/2">
+        <p className="font-serif mt-3 text-sm font-bold text-white/80 sm:text-base">
+          Introducing Wannsee - our newest functional fragrance, designed for the seamless transition from focus to activity. 
+          <br/><br/>
+          Notes of pressed bergamot, italian lemon and mineral salt.
         </p>
         <Link
           href="#"
-          className="mt-4 inline-block rounded-full bg-white px-5 py-3 text-sm font-medium text-black hover:bg-white/90"
+          className="mt-4 inline-block rounded-full bg-white px-4 py-2 text-xs font-medium text-black hover:bg-white/90"
         >
-          Discover more
+          Shop Wannsee
         </Link>
       </div>
     </div>
