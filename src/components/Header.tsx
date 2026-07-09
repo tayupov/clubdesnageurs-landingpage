@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 
 const NAV_LINKS = [
-  { href: "/les-recoltes-majeures-la-rose", label: "Les Récoltes Majeures La Rose" },
-  { href: "/eine-sonniger-auszeit", label: "Eine sonniger Auszeit" },
+  { href: "/earth", label: "Earth" },
+  { href: "/passionfruit", label: "Passionfruit" },
 ];
 
 export default function Header() {

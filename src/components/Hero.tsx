@@ -24,15 +24,15 @@ export default function Hero() {
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 px-6 text-center text-white" />
       <div className="absolute inset-x-0 bottom-12 z-10 px-6 text-left text-white sm:inset-x-auto sm:bottom-20 sm:left-1/4 sm:max-w-lg sm:-translate-x-1/2">
         <p className="font-serif mt-3 text-sm font-bold text-white/80 sm:text-base">
-          Introducing Wannsee - our newest functional fragrance, designed for the seamless transition from focus to activity. 
+          Introducing Earth - our newest functional fragrance, designed for the seamless transition from focus to activity. 
           <br/><br/>
           Notes of pressed bergamot, italian lemon and mineral salt.
         </p>
         <Link
-          href="#"
+          href="/earth"
           className="mt-4 inline-block rounded-full bg-white px-4 py-2 text-xs font-medium text-black hover:bg-white/90"
         >
-          Shop Wannsee
+          Shop "Earth"
         </Link>
       </div>
     </div>

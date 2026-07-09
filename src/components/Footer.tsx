@@ -2,8 +2,7 @@ import Link from "next/link";
 
 
 const SOCIAL_LINKS = [
-  { href: "https://www.instagram.com/the42co", label: "Instagram"},
-  { href: "https://www.tiktok.com/@the42co", label: "TikTok"},
+  { href: "https://www.instagram.com/the42co", label: "Instagram"}
 ];
 
 export default function Footer() {

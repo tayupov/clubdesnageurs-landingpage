@@ -6,17 +6,16 @@ export default function Home() {
     <>
       <Hero />
       <ProductSection
-        eyebrow="Neue Kollektion"
-        title="Les Récoltes Majeures La Rose"
-        href="/les-recoltes-majeures-la-rose"
-        className="bg-gradient-to-br from-rose-200 via-amber-100 to-stone-300"
+        eyebrow="Fresh · Woody · Green"
+        title="Earth"
+        href="/earth"
+        className="bg-gradient-to-br from-emerald-200 via-lime-100 to-stone-300"
       />
       <ProductSection
-        eyebrow="Limited Edition"
-        title="Eine sonniger Auszeit"
-        cta="Entdecken"
-        href="/eine-sonniger-auszeit"
-        className="bg-gradient-to-br from-sky-100 via-amber-50 to-emerald-100"
+        eyebrow="Fruity · Sweet · Fresh"
+        title="Passionfruit"
+        href="/passionfruit"
+        className="bg-gradient-to-br from-orange-200 via-rose-100 to-yellow-100"
       />
     </>
   );
