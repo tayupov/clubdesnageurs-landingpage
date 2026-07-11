@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 const PASSIONFRUIT_DATA: ProductPageProps = {
   title: "Passionfruit",
   brand: "Loewe",
-  perfumer: "Núria Cruelles Borrull",
-  referenceProduct: "Solo Loewe Ella Eau de Toilette (2020)",
-  scentDirection: ["Fruity", "Sweet", "Fresh", "Woody", "Spicy"],
+  scentDirection: ["Fruity", "Sweet", "Fresh", "Woody"],
   scentPyramid: {
     topNotes: [
       { name: "Passionsfrucht", nameEn: "Passion Fruit", prominence: 5 },
@@ -31,6 +29,7 @@ const PASSIONFRUIT_DATA: ProductPageProps = {
     longevity: { value: 7.5, count: 64 },
     sillage: { value: 7.3, count: 64 },
   },
+  conceptImage: "/passionfruit-concept.png",
 };
 
 export default function Page() {

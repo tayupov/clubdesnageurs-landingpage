@@ -11,14 +11,13 @@ export type ScentPyramid = {
 export type ProductPageProps = {
   title: string;
   brand: string | null;
-  perfumer: string | null;
-  referenceProduct?: string;
   scentDirection: string[];
   scentPyramid: ScentPyramid;
   ratings: {
     longevity: { value: number; count: number };
     sillage: { value: number; count: number };
   };
+  conceptImage?: string;
 };
 
 function ImagePlaceholder({
@@ -62,20 +61,20 @@ const ACCORD_ICONS: Partial<Record<string, string>> = {
 function AccordRow({ note }: { note: ScentNote }) {
   const icon = ACCORD_ICONS[note.nameEn];
   return (
-    <li className="flex items-center justify-between gap-2">
-      <span>{note.nameEn}</span>
-      <div className="flex items-center gap-2">
-        {icon ? (
-          <Image
-            src={icon}
-            alt=""
-            width={28}
-            height={28}
-            className="h-7 w-7 shrink-0 rounded-full object-cover"
-          />
-        ) : (
-          <span className="h-7 w-7 shrink-0 rounded-full bg-zinc-100 dark:bg-zinc-800" />
-        )}
+    <li className="flex items-center gap-2.5">
+      {icon ? (
+        <Image
+          src={icon}
+          alt=""
+          width={24}
+          height={24}
+          className="h-6 w-6 shrink-0 rounded-full object-cover"
+        />
+      ) : (
+        <span className="h-6 w-6 shrink-0 rounded-full bg-zinc-100 dark:bg-zinc-800" />
+      )}
+      <div className="flex flex-col">
+        <span>{note.nameEn}</span>
         <DotRating level={note.prominence} />
       </div>
     </li>
@@ -85,11 +84,6 @@ function AccordRow({ note }: { note: ScentNote }) {
 function topNoteOf(notes: ScentNote[]): ScentNote {
   return notes.reduce((max, note) => (note.prominence > max.prominence ? note : max));
 }
-
-const CROSS_SELL_ITEMS = [
-  { name: "[Product Name A]", description: "[Short description of the complementary product.]" },
-  { name: "[Product Name B]", description: "[Short description of the complementary product.]" },
-];
 
 const REVIEWS = [
   {
@@ -115,11 +109,10 @@ const REVIEWS = [
 export default function ProductPage({
   title,
   brand,
-  perfumer,
-  referenceProduct,
   scentDirection,
   scentPyramid,
   ratings,
+  conceptImage,
 }: ProductPageProps) {
   return (
     <div className="bg-white text-zinc-900 dark:bg-black dark:text-zinc-100">
@@ -132,22 +125,15 @@ export default function ProductPage({
 
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1.5">
-            <h1 className="font-serif text-3xl">{title}</h1>
-            <p className="text-[11px] font-medium tracking-[0.2em] text-zinc-500 uppercase dark:text-zinc-400">
-              {brand ?? "[Collection / Category]"}
-            </p>
+            <div className="flex items-baseline gap-3">
+              <h1 className="font-sans text-5xl font-medium tracking-tight">{title}</h1>
+              <i className="font-serif text-base text-zinc-400 dark:text-zinc-500">Coming Soon</i>
+            </div>
           </div>
           <p className="text-xs leading-normal text-zinc-600 dark:text-zinc-300">
             [Product description goes here — a short paragraph introducing the product, its
             character, and what makes it worth trying.]
           </p>
-          {(perfumer || referenceProduct) && (
-            <div className="text-[11px] text-zinc-400 dark:text-zinc-500">
-              {perfumer && <p>By {perfumer}</p>}
-              {referenceProduct && <p>Inspired by {referenceProduct}</p>}
-            </div>
-          )}
-
           <div className="flex flex-wrap gap-1.5">
             {scentDirection.map((direction) => (
               <span
@@ -159,22 +145,8 @@ export default function ProductPage({
             ))}
           </div>
 
-          <ul className="flex gap-6 text-xs text-zinc-600 dark:text-zinc-300">
-            {(
-              [
-                ["Longevity", ratings.longevity],
-                ["Sillage", ratings.sillage],
-              ] as const
-            ).map(([label, { value }]) => (
-              <li key={label} className="flex items-center gap-2">
-                <span>{label}</span>
-                <DotRating level={value / 2} />
-              </li>
-            ))}
-          </ul>
-
-          <div className="grid grid-cols-2 gap-0 rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
-            <div className="flex flex-col gap-3 text-xs text-zinc-600 dark:text-zinc-300">
+          <div className="grid w-fit grid-cols-[auto_1fr] gap-0 rounded-lg border border-zinc-200 p-5 dark:border-zinc-800">
+            <div className="flex flex-col gap-2 pr-4 text-xs text-zinc-600 dark:text-zinc-300">
               {(
                 [
                   ["Top Notes", scentPyramid.topNotes],
@@ -183,28 +155,24 @@ export default function ProductPage({
                 ] as const
               ).map(([label, notes]) => (
                 <div key={label}>
-                  <p className="mb-1 text-xs font-bold text-zinc-800 dark:text-zinc-100">{label}</p>
-                  <ul className="flex flex-col gap-1">
-                    {notes.map((note) => (
+                  <p className="mb-0.5 text-xs font-bold text-zinc-800 dark:text-zinc-100">{label}</p>
+                  <ul className="flex flex-col gap-0.5">
+                    {notes.slice(0, 3).map((note) => (
                       <NoteRow key={note.nameEn} note={note} />
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
-            <div className="flex flex-col justify-center gap-2 border-l border-zinc-200 pl-4 text-xs text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
-              <p className="mb-1 text-xs font-bold text-zinc-800 dark:text-zinc-100">Main Accords</p>
-              <ul className="flex flex-col gap-2">
+            <div className="flex flex-col justify-start gap-1.5 border-l border-zinc-200 pl-4 text-xs text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
+              <p className="mb-0.5 text-xs font-bold text-zinc-800 dark:text-zinc-100">Main Accords</p>
+              <ul className="flex flex-col gap-1.5">
                 <AccordRow note={topNoteOf(scentPyramid.topNotes)} />
                 <AccordRow note={topNoteOf(scentPyramid.heartNotes)} />
                 <AccordRow note={topNoteOf(scentPyramid.baseNotes)} />
               </ul>
             </div>
           </div>
-
-          <p className="text-xs font-medium tracking-[0.2em] text-zinc-500 uppercase dark:text-zinc-400">
-            Coming Soon
-          </p>
         </div>
       </section>
 
@@ -212,7 +180,7 @@ export default function ProductPage({
       <section className="bg-zinc-50 dark:bg-zinc-950">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2 md:gap-16 md:py-28">
           <div className="flex flex-col justify-center gap-6">
-            <h2 className="font-serif text-4xl sm:text-5xl">The [Concept]</h2>
+            <h2 className="font-sans text-4xl font-medium tracking-tight sm:text-5xl">The [Concept]</h2>
             <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
               [Opening paragraph explaining the idea behind the product —] <em>the underlying
               philosophy or research</em> [that grounds the experience in something concrete.]
@@ -226,7 +194,13 @@ export default function ProductPage({
               [and what it means for the customer.]
             </p>
           </div>
-          <ImagePlaceholder label="[placeholder-image.jpg]" className="min-h-[320px] w-full" />
+          {conceptImage ? (
+            <div className="relative aspect-[4/3] w-full self-center overflow-hidden">
+              <Image src={conceptImage} alt="" fill className="object-cover" />
+            </div>
+          ) : (
+            <ImagePlaceholder label="[placeholder-image.jpg]" className="min-h-[320px] w-full" />
+          )}
         </div>
       </section>
 
@@ -234,7 +208,7 @@ export default function ProductPage({
       <section className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-20 sm:grid-cols-2 md:py-28">
         {["A", "B"].map((variant) => (
           <div key={variant} className="flex flex-col items-center gap-6 text-center">
-            <h3 className="font-serif text-2xl">Matches [Characteristic {variant}]</h3>
+            <h3 className="font-sans text-2xl font-medium tracking-tight">Matches [Characteristic {variant}]</h3>
             <div className="relative">
               <ImagePlaceholder
                 label="[placeholder-image.jpg]"
@@ -260,52 +234,13 @@ export default function ProductPage({
         </div>
       </section>
 
-      {/* Cross-sell */}
-      <section className="bg-zinc-50 dark:bg-zinc-950">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h2 className="font-serif text-4xl sm:text-5xl">Pairs Well With...</h2>
-            <p className="max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-              [Short paragraph explaining the cross-sell concept — how these products complement
-              this one and can be layered or paired together.]
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
-            {CROSS_SELL_ITEMS.map((item) => (
-              <div key={item.name} className="flex gap-4">
-                <ImagePlaceholder
-                  label="[placeholder-image.jpg]"
-                  className="aspect-[3/4] w-28 shrink-0"
-                />
-                <div className="flex flex-col gap-2">
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">{item.description}</p>
-                  <div className="flex gap-2">
-                    {[1, 2, 3, 4].map((dot) => (
-                      <span
-                        key={dot}
-                        className="h-6 w-6 rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900"
-                      />
-                    ))}
-                  </div>
-                  <button className="mt-1 w-fit rounded-full border border-zinc-300 px-4 py-1 text-sm hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-900">
-                    + Add
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Reviews */}
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
         <ImagePlaceholder label="[placeholder-image.jpg]" className="min-h-[420px] w-full" />
 
         <div className="flex flex-col gap-8">
           <div>
-            <h2 className="font-serif text-4xl sm:text-5xl">Customer Reviews</h2>
+            <h2 className="font-sans text-4xl font-medium tracking-tight sm:text-5xl">Customer Reviews</h2>
             <div className="mt-3 flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
               <span>4.9 stars based on [24] Reviews</span>
               <button className="underline underline-offset-4">Write a review</button>

@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 const EARTH_DATA: ProductPageProps = {
   title: "Earth",
   brand: null,
-  perfumer: null,
-  scentDirection: ["Fresh", "Woody", "Green", "Spicy", "Citrus"],
+  scentDirection: ["Fresh", "Woody", "Green", "Citrus"],
   scentPyramid: {
     topNotes: [
       { name: "Wacholder", nameEn: "Juniper", prominence: 5 },

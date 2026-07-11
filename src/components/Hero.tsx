@@ -18,13 +18,13 @@ export default function Hero() {
         <source src="/hero.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/40" />
-      <i className="font-serif absolute top-48 left-[38px] z-10 origin-left -rotate-90 text-xl whitespace-nowrap text-white/90 sm:text-2xl">
-        The 42 Company
+      <i className="font-serif absolute top-35 left-[45px] z-10 origin-left -rotate-90 text-xl whitespace-nowrap text-white/90 sm:text-2xl">
+        The 42 Co.
       </i>
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 px-6 text-center text-white" />
       <div className="absolute inset-x-0 bottom-12 z-10 px-6 text-left text-white sm:inset-x-auto sm:bottom-20 sm:left-1/4 sm:max-w-lg sm:-translate-x-1/2">
-        <p className="font-serif mt-3 text-sm font-bold text-white/80 sm:text-base">
-          Introducing Earth - our newest functional fragrance, designed for the seamless transition from focus to activity. 
+        <p className="font-sans mt-3 text-sm text-white/80 sm:text-base">
+          Introducing "Earth" - our newest functional fragrance, designed for the seamless transition from focus to activity. 
           <br/><br/>
           Notes of pressed bergamot, italian lemon and mineral salt.
         </p>

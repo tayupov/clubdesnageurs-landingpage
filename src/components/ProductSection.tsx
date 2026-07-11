@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type ProductSectionProps = {
@@ -6,6 +7,15 @@ type ProductSectionProps = {
   cta?: string;
   href: string;
   className: string;
+  image?: string;
+  imagePosition?: string;
+  contentAlign?: "start" | "center" | "end";
+};
+
+const CONTENT_ALIGN_CLASSES: Record<NonNullable<ProductSectionProps["contentAlign"]>, string> = {
+  start: "items-start pt-24 md:pt-32",
+  center: "items-center",
+  end: "items-end pb-24 md:pb-32",
 };
 
 export default function ProductSection({
@@ -14,15 +24,28 @@ export default function ProductSection({
   cta = "Entdecken",
   href,
   className,
+  image,
+  imagePosition = "center",
+  contentAlign = "center",
 }: ProductSectionProps) {
   return (
     <section
-      className={`relative flex h-[85vh] min-h-[520px] w-full items-center justify-center overflow-hidden ${className}`}
+      className={`relative flex h-[85vh] min-h-[520px] w-full justify-center overflow-hidden ${CONTENT_ALIGN_CLASSES[contentAlign]} ${className}`}
     >
+      {image && (
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          style={{ objectPosition: imagePosition }}
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-black/60" />
       <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center text-white">
         {eyebrow && <p className="text-xs font-medium tracking-[0.2em] uppercase">{eyebrow}</p>}
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">{title}</h2>
+        <h2 className="font-sans text-3xl sm:text-4xl md:text-5xl">{title}</h2>
         <Link href={href} className="mt-2 text-sm tracking-wide underline underline-offset-4">
           {cta}
         </Link>

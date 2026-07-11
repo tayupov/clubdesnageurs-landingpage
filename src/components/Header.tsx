@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
@@ -72,11 +73,15 @@ export default function Header() {
               <line x1="1" y1="23" x2="23" y2="23" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
             </svg>
           </button>
-          <Link
-            href="/"
-            className={`text-xs font-medium tracking-[0.25em] uppercase ${overlay ? "text-white" : ""}`}
-          >
-            The 42 Co.
+          <Link href="/" aria-label="The 42 Co.">
+            <Image
+              src={overlay ? "/logo-mark-white.png" : "/logo-mark.png"}
+              alt="The 42 Co."
+              width={44}
+              height={44}
+              priority
+              className={`h-11 w-11 ${overlay ? "" : "dark:invert"}`}
+            />
           </Link>
           <div className="w-7" />
         </div>
@@ -119,7 +124,7 @@ export default function Header() {
                     <Link
                       href={href}
                       onClick={() => setOpen(false)}
-                      className="font-serif text-lg text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
+                      className="font-sans text-lg text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white"
                     >
                       {label}
                     </Link>

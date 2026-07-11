@@ -12,10 +12,13 @@ export default function Home() {
         className="bg-gradient-to-br from-emerald-200 via-lime-100 to-stone-300"
       />
       <ProductSection
-        eyebrow="Fruity · Sweet · Fresh"
+        eyebrow="Fresh · Sweet · Fruity"
         title="Passionfruit"
         href="/passionfruit"
         className="bg-gradient-to-br from-orange-200 via-rose-100 to-yellow-100"
+        image="/passionfruit-home.png"
+        imagePosition="center 85%"
+        contentAlign="start"
       />
     </>
   );
