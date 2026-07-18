@@ -1,5 +1,5 @@
 ---
-title: "Teaching a model to read the evidence"
+title: "The Science of Scents"
 date: "2026-07-18"
 excerpt: "The research linking specific molecules to mood and cognition is real, but it's scattered across hundreds of studies with different doses, methods, and populations. We built a tool that reads it systematically, so formulation starts from evidence instead of instinct."
 ---
